@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static steps.BaseSteps.getDriver;
+
 public class DMSPage {
 
     private final Wait<WebDriver> WAIT;
@@ -15,9 +17,9 @@ public class DMSPage {
     @FindBy(xpath = "//a[contains(text(), 'Отправить заявку')]")
     private WebElement sendButton;
 
-    public DMSPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        WAIT = new WebDriverWait(driver, 5);
+    public DMSPage() {
+        PageFactory.initElements(getDriver(), this);
+        WAIT = new WebDriverWait(getDriver(), 5);
     }
 
     public void clickSendButton() {

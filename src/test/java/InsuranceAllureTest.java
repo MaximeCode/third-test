@@ -1,46 +1,37 @@
-import io.qameta.allure.Step;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.Test;
-import pages.DMSPage;
-import pages.MainPage;
-import pages.SendAppPage;
+import steps.BaseSteps;
+import steps.DMSPageSteps;
+import steps.MainPageSteps;
+import steps.SendAppPageSteps;
 
-public class InsuranceAllureTest extends BaseTest {
+@Feature("Страхование")
+@Story("Заявка на ДМС")
+public class InsuranceAllureTest extends BaseSteps {
 
+    @Description("Проверка возможности неправильного заполнения формы заявки.")
     @Test
     public void testInsurance() {
-        step1();
-        step2();
-        step3();
-    }
-
-    @Step("Шаг 1")
-    public void step1() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickMenu();
-        mainPage.selectSubMenu("ДМС");
-    }
-
-    @Step("Шаг 2")
-    public void step2() {
-        DMSPage dmsPage = new DMSPage(driver);
-        dmsPage.clickSendButton();
-    }
-
-    @Step("Шаг 3")
-    public void step3() {
-        SendAppPage sendAppPage = new SendAppPage(driver);
-        sendAppPage.checkTitle("Заявка на добровольное медицинское страхование");
-        sendAppPage.fillLastName("Иванов");
-        sendAppPage.fillFirstName("Иван");
-        sendAppPage.fillMiddleName("Иванович");
-        sendAppPage.selectRegion("Москва");
-        sendAppPage.fillEmail("ivanov.ru");
-        sendAppPage.fillComment("autotest");
-        sendAppPage.clickConsentCheckbox();
-        sendAppPage.clickSendButton();
-        sendAppPage.checkEmailWarning("Введите адрес электронной почты");
-        sendAppPage.checkLastName("Иванов");
-        sendAppPage.checkFirstName("Иван");
-        sendAppPage.checkMiddleName("Иванович");
+        MainPageSteps mainPageSteps = new MainPageSteps();
+        mainPageSteps.clickMenu();
+        mainPageSteps.selectSubMenu("ДМС");
+        DMSPageSteps dmsPageSteps = new DMSPageSteps();
+        dmsPageSteps.clickSendButton();
+        SendAppPageSteps sendAppPageSteps = new SendAppPageSteps();
+        sendAppPageSteps.checkTitle("Заявка на добровольное медицинское страхование");
+        sendAppPageSteps.fillLastName("Иванов");
+        sendAppPageSteps.fillFirstName("Иван");
+        sendAppPageSteps.fillMiddleName("Иванович");
+        sendAppPageSteps.selectRegion("Москва");
+        sendAppPageSteps.fillEmail("ivanov.ru");
+        sendAppPageSteps.fillComment("autotest");
+        sendAppPageSteps.clickConsentCheckbox();
+        sendAppPageSteps.clickSendButton();
+        sendAppPageSteps.checkEmailWarning("Введите адрес электронной почты");
+        sendAppPageSteps.checkLastName("Иванов");
+        sendAppPageSteps.checkFirstName("Иван");
+        sendAppPageSteps.checkMiddleName("Иванович");
     }
 }

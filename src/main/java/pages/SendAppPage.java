@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static steps.BaseSteps.getDriver;
+
 public class SendAppPage {
 
     private final Wait<WebDriver> WAIT;
@@ -45,9 +47,9 @@ public class SendAppPage {
     private WebElement sendButton;
 
 
-    public SendAppPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        WAIT = new WebDriverWait(driver, 5);
+    public SendAppPage() {
+        PageFactory.initElements(getDriver(), this);
+        WAIT = new WebDriverWait(getDriver(), 5);
     }
 
     public void checkTitle(String title) {
